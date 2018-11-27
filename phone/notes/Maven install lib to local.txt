@@ -1,0 +1,1 @@
+mvn install:install-file -Dfile="D:\Workspace\Debt_Project\phone\libs\JVoIP.jar" -DgroupId=com.may.ple  -DartifactId=jvoip -Dversion=1.0 -Dpackaging=jar
