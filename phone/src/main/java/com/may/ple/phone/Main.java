@@ -130,7 +130,7 @@ public class Main extends Application {
         scene.setFill(Color.BROWN);
         
         //--------
-        primaryStage.getIcons().add(new Image("file:///D:\\Workspace\\Debt_Project\\dmsPhone\\img\\icon.png"));
+        primaryStage.getIcons().add(new Image(getClass().getClassLoader().getResource("icon.png").toString()));
         primaryStage.setTitle("DMS Phone : ");
         primaryStage.setScene(scene);
         primaryStage.show();
@@ -146,7 +146,7 @@ public class Main extends Application {
 		System.out.println("Init");
 		
 		try {
-			wobj = new webphone();
+			/*wobj = new webphone();
 			wobj.API_SetParameter("loglevel", "1");
 			wobj.API_SetParameter("logtoconsole", "true");
 			wobj.API_SetParameter("polling", "3");
@@ -161,7 +161,7 @@ public class Main extends Application {
 			
 			wobj.API_Start();
 			Thread.sleep(200);
-			System.out.println("Start sip finished.");
+			System.out.println("Start sip finished.");*/
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
