@@ -109,11 +109,30 @@ public class SIPNotifications extends Thread
     public void ProcessNotifications(String msg)
     {
         try{
+        	String[] msgArr = msg.split(",");
+        	String status = msgArr[0].trim();
+        	String line = msgArr[1].trim();
+        	
+        	if(!status.equals("STATUS") || !line.equals("-1")) return;
+        	String statustext = msgArr[2].trim();
+        		
+        	switch(statustext) {
+        	case "Incoming...": System.out.println("### Incoming..."); break;
+        	case "Calling...": System.out.println("### Calling..."); break;
+        	case "Ringing...": System.out.println("### Ringing..."); break;
+        	case "Accept": System.out.println("### Accept"); break;
+        	case "Starting Call": System.out.println("### Starting Call"); break;
+        	case "Hangup": System.out.println("### Hangup"); break;
+        	case "Call Finished": System.out.println("### Call Finished"); break;
+        	}
+        	
             //frame.jTextArea1.append(msg);
 
             //TODO: process notifications here (change your user interface or business logic depending on the sipstack state / call state by parsing the strings receiver here).
             //See the "Notifications" chapter in the documentation for the expecteddetails.
-        }catch(Exception e) { System.out.println("Exception at SIPNotifications ProcessNotifications: "+e.getMessage()+"\r\n"+e.getStackTrace()); }
+        }catch(Exception e) { 
+        	System.out.println("Exception at SIPNotifications ProcessNotifications: "+e.getMessage()+"\r\n"+e.getStackTrace()); 
+        }
     }
 }
 

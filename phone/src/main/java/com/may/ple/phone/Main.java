@@ -146,7 +146,7 @@ public class Main extends Application {
 		System.out.println("Init");
 		
 		try {
-			/*wobj = new webphone();
+			wobj = new webphone();
 			wobj.API_SetParameter("loglevel", "1");
 			wobj.API_SetParameter("logtoconsole", "true");
 			wobj.API_SetParameter("polling", "3");
@@ -154,14 +154,15 @@ public class Main extends Application {
 			wobj.API_SetParameter("serveraddress", "192.168.2.253");
 			wobj.API_SetParameter("username", "100");
 			wobj.API_SetParameter("password", "abc123");
+//			wobj.API_SetParameter("iscommandline", "true");
+//			wobj.API_SetParameter("hasgui", "false");
             
 			notify = new SIPNotifications(wobj);
 			notify.start();
 			Thread.sleep(100);
 			
 			wobj.API_Start();
-			Thread.sleep(200);
-			System.out.println("Start sip finished.");*/
+			System.out.println("Start sip finished.");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
