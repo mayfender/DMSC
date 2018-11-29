@@ -147,6 +147,9 @@ public class Main extends Application {
 		
 		try {
 			wobj = new webphone();
+			
+			// Set to false if you don’t need the popup for the incoming calls.
+			wobj.API_SetParameter("hasincomingcallpopup", "false");
 			wobj.API_SetParameter("loglevel", "1");
 			wobj.API_SetParameter("logtoconsole", "true");
 			wobj.API_SetParameter("polling", "3");
@@ -154,8 +157,7 @@ public class Main extends Application {
 			wobj.API_SetParameter("serveraddress", "192.168.2.253");
 			wobj.API_SetParameter("username", "100");
 			wobj.API_SetParameter("password", "abc123");
-//			wobj.API_SetParameter("iscommandline", "true");
-//			wobj.API_SetParameter("hasgui", "false");
+			
             
 			notify = new SIPNotifications(wobj);
 			notify.start();
