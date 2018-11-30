@@ -3,7 +3,7 @@
 * This class will create an UDP listener to receive the notifications from JVoIP
 */
 
-package com.may.ple.phone; //you might change this after your package name
+package com.may.ple.phone.sip; //you might change this after your package name
 
 import java.net.DatagramSocket;
 import java.net.DatagramPacket;

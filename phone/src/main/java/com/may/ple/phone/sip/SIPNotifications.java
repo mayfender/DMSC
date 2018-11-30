@@ -2,7 +2,7 @@
 * Notification receiver thread
 */
 
-package com.may.ple.phone; //you might change this after your package name
+package com.may.ple.phone.sip; //you might change this after your package name
 
 import webphone.webphone;
 
