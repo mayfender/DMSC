@@ -11,7 +11,7 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 public class Ui1 extends Application {
-	private Scene scene;
+	public static Scene scene;
 	
 	@Override
 	public void init() throws Exception {
@@ -24,11 +24,8 @@ public class Ui1 extends Application {
 			//1.
 	        scene = new Scene(layout());
 	        scene.setFill(Color.BROWN);
-	        
+	        	        
 	        //2.
-	        new ManageEvents(scene).process();
-	        
-	        //3.
 	        primaryStage.getIcons().add(new Image(getClass().getClassLoader().getResource("icon.png").toString()));
 	        primaryStage.setTitle("DMS Phone : ");
 	        primaryStage.setScene(scene);
@@ -38,57 +35,84 @@ public class Ui1 extends Application {
 		}
 	}
 	
-	private void createNotes(GridPane gridPane) {
+	private void createNodes(GridPane gridPane) {
 		Button button1 = new Button("1"); 
 		button1.setStyle(Style.FONT_SIZE);
+		button1.setOnAction(e -> EventImpl.process(e));
+		
 		Button button2 = new Button("2");  
 		button2.setStyle(Style.FONT_SIZE);
+		button2.setOnAction(e -> EventImpl.process(e));
+		
 		Button button3 = new Button("3");  
 		button3.setStyle(Style.FONT_SIZE);
+		button3.setOnAction(e -> EventImpl.process(e));
 		
 		Button button4 = new Button("4"); 
 		button4.setStyle(Style.FONT_SIZE);
+		button4.setOnAction(e -> EventImpl.process(e));
+		
 		Button button5 = new Button("5");  
 		button5.setStyle(Style.FONT_SIZE);
+		button5.setOnAction(e -> EventImpl.process(e));
+		
 		Button button6 = new Button("6");  
 		button6.setStyle(Style.FONT_SIZE);
+		button6.setOnAction(e -> EventImpl.process(e));
 		
 		Button button7 = new Button("7"); 
 		button7.setStyle(Style.FONT_SIZE);
+		button7.setOnAction(e -> EventImpl.process(e));
+		
 		Button button8 = new Button("8");  
 		button8.setStyle(Style.FONT_SIZE);
+		button8.setOnAction(e -> EventImpl.process(e));
+		
 		Button button9 = new Button("9"); 
 		button9.setStyle(Style.FONT_SIZE);
+		button9.setOnAction(e -> EventImpl.process(e));
 		
 		Button asterisk = new Button("*"); 
 		asterisk.setStyle(Style.FONT_SIZE);
+		asterisk.setOnAction(e -> EventImpl.process(e));
+		
 		Button button0 = new Button("0");  
 		button0.setStyle(Style.FONT_SIZE);
+		button0.setOnAction(e -> EventImpl.process(e));
+		
 		Button pound = new Button("#");  
 		pound.setStyle(Style.FONT_SIZE);
+		pound.setOnAction(e -> EventImpl.process(e));
 		
 		Button end = new Button("End"); 
 		end.setId("end");
 		end.setStyle(Style.FONT_SIZE);
+		end.setOnAction(e -> EventImpl.process(e));
 		
 		Button call = new Button("Call");
 		call.setId("call");
 		call.setStyle(Style.FONT_SIZE);
+		call.setOnAction(e -> EventImpl.process(e));
 		
 		Button reg = new Button("Regist"); 
+		reg.setId("reg");
 		reg.setStyle(Style.FONT_SIZE);
+		reg.setOnAction(e -> EventImpl.process(e));
 		
 		Button unReg = new Button("Unregist"); 
+		unReg.setId("unReg");
 		unReg.setStyle(Style.FONT_SIZE);
+		unReg.setOnAction(e -> EventImpl.process(e));
 		
-		TextField textField1 = new TextField();
-		textField1.setId("input");
-		textField1.setStyle(Style.FONT_SIZE);
+		TextField input = new TextField();
+		input.setId("input");
+		input.setStyle(Style.FONT_SIZE);
+		input.setOnKeyPressed(e -> EventImpl.process(e));
 		
 		gridPane.add(button1, 0, 0); 
 		gridPane.add(button2, 1, 0); 
 		gridPane.add(button3, 2, 0); 
-		gridPane.add(textField1, 3, 0); 
+		gridPane.add(input, 3, 0); 
 		gridPane.add(call, 4, 0); 
 		gridPane.add(end, 5, 0); 
 		
@@ -115,7 +139,7 @@ public class Ui1 extends Application {
 		gridPane.setHgap(5);
 		
 		//1. createNotes
-		createNotes(gridPane);
+		createNodes(gridPane);
 		
 		return gridPane;
 	}
