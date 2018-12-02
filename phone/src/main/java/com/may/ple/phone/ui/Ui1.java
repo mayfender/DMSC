@@ -106,29 +106,32 @@ public class Ui1 extends Application {
 		
 		TextField input = new TextField();
 		input.setId("input");
+		input.setPromptText("Enter name or number");
 		input.setStyle(Style.FONT_SIZE);
 		input.setOnKeyPressed(e -> EventImpl.process(e));
 		
-		gridPane.add(button1, 0, 0); 
-		gridPane.add(button2, 1, 0); 
-		gridPane.add(button3, 2, 0); 
-		gridPane.add(input, 3, 0); 
-		gridPane.add(call, 4, 0); 
-		gridPane.add(end, 5, 0); 
+		gridPane.add(input, 0, 0, 3, 1);
 		
-		gridPane.add(button4, 0, 1); 
-		gridPane.add(button5, 1, 1); 
-		gridPane.add(button6, 2, 1); 
+		gridPane.add(button1, 0, 1); 
+		gridPane.add(button2, 1, 1); 
+		gridPane.add(button3, 2, 1); 
+//		gridPane.add(input, 3, 1); 
+//		gridPane.add(call, 4, 0); 
+//		gridPane.add(end, 5, 0); 
+		
+		gridPane.add(button4, 0, 2); 
+		gridPane.add(button5, 1, 2); 
+		gridPane.add(button6, 2, 2); 
 //		gridPane.add(reg, 3, 1); 
 //		gridPane.add(unReg, 4, 1); 
 		
-		gridPane.add(button7, 0, 2); 
-		gridPane.add(button8, 1, 2); 
-		gridPane.add(button9, 2, 2); 
+		gridPane.add(button7, 0, 3); 
+		gridPane.add(button8, 1, 3); 
+		gridPane.add(button9, 2, 3); 
 		
-		gridPane.add(asterisk, 0, 3); 
-		gridPane.add(button0, 1, 3); 
-		gridPane.add(pound, 2, 3);
+		gridPane.add(asterisk, 0, 4); 
+		gridPane.add(button0, 1, 4); 
+		gridPane.add(pound, 2, 4);
 	}
 	
 	private GridPane layout() {
