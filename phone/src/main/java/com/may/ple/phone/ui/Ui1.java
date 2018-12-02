@@ -37,50 +37,62 @@ public class Ui1 extends Application {
 	
 	private void createNodes(GridPane gridPane) {
 		Button button1 = new Button("1"); 
+		button1.setId("1");
 		button1.setStyle(Style.FONT_SIZE);
 		button1.setOnAction(e -> EventImpl.process(e));
 		
-		Button button2 = new Button("2");  
+		Button button2 = new Button("2");
+		button2.setId("2");
 		button2.setStyle(Style.FONT_SIZE);
 		button2.setOnAction(e -> EventImpl.process(e));
 		
-		Button button3 = new Button("3");  
+		Button button3 = new Button("3");
+		button3.setId("3");
 		button3.setStyle(Style.FONT_SIZE);
 		button3.setOnAction(e -> EventImpl.process(e));
 		
-		Button button4 = new Button("4"); 
+		Button button4 = new Button("4");
+		button4.setId("4");
 		button4.setStyle(Style.FONT_SIZE);
 		button4.setOnAction(e -> EventImpl.process(e));
 		
-		Button button5 = new Button("5");  
+		Button button5 = new Button("5");
+		button5.setId("5");
 		button5.setStyle(Style.FONT_SIZE);
 		button5.setOnAction(e -> EventImpl.process(e));
 		
-		Button button6 = new Button("6");  
+		Button button6 = new Button("6");
+		button6.setId("6");
 		button6.setStyle(Style.FONT_SIZE);
 		button6.setOnAction(e -> EventImpl.process(e));
 		
-		Button button7 = new Button("7"); 
+		Button button7 = new Button("7");
+		button7.setId("7");
 		button7.setStyle(Style.FONT_SIZE);
 		button7.setOnAction(e -> EventImpl.process(e));
 		
-		Button button8 = new Button("8");  
+		Button button8 = new Button("8");
+		button8.setId("8");
 		button8.setStyle(Style.FONT_SIZE);
 		button8.setOnAction(e -> EventImpl.process(e));
 		
-		Button button9 = new Button("9"); 
+		Button button9 = new Button("9");
+		button9.setId("9");
 		button9.setStyle(Style.FONT_SIZE);
 		button9.setOnAction(e -> EventImpl.process(e));
 		
-		Button asterisk = new Button("*"); 
+		Button asterisk = new Button("*");
+		asterisk.setId("asterisk");
 		asterisk.setStyle(Style.FONT_SIZE);
 		asterisk.setOnAction(e -> EventImpl.process(e));
 		
-		Button button0 = new Button("0");  
+		Button button0 = new Button("0");
+		button0.setId("0");
 		button0.setStyle(Style.FONT_SIZE);
 		button0.setOnAction(e -> EventImpl.process(e));
 		
-		Button pound = new Button("#");  
+		Button pound = new Button("#");
+		pound.setId("pound");
 		pound.setStyle(Style.FONT_SIZE);
 		pound.setOnAction(e -> EventImpl.process(e));
 		
@@ -109,6 +121,7 @@ public class Ui1 extends Application {
 		input.setPromptText("Enter name or number");
 		input.setStyle(Style.FONT_SIZE);
 		input.setOnKeyPressed(e -> EventImpl.process(e));
+		input.setOnKeyReleased(e -> EventImpl.process(e));
 		
 		gridPane.add(input, 0, 0, 3, 1);
 		gridPane.add(call, 4, 0); 
