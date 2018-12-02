@@ -111,12 +111,11 @@ public class Ui1 extends Application {
 		input.setOnKeyPressed(e -> EventImpl.process(e));
 		
 		gridPane.add(input, 0, 0, 3, 1);
+		gridPane.add(call, 4, 0); 
 		
 		gridPane.add(button1, 0, 1); 
 		gridPane.add(button2, 1, 1); 
 		gridPane.add(button3, 2, 1); 
-//		gridPane.add(input, 3, 1); 
-//		gridPane.add(call, 4, 0); 
 //		gridPane.add(end, 5, 0); 
 		
 		gridPane.add(button4, 0, 2); 
