@@ -6,6 +6,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
@@ -36,6 +37,14 @@ public class Ui1 extends Application {
 	}
 	
 	private void createNodes(GridPane gridPane) {
+		GridPane gridPane1 = new GridPane();
+		gridPane1.setVgap(3); 
+		gridPane1.setHgap(3);
+		
+		GridPane gridPane2 = new GridPane();
+		gridPane2.setVgap(5); 
+		gridPane2.setHgap(5);
+		
 		Button button1 = new Button("1"); 
 		button1.setId("1");
 		button1.setStyle(Style.FONT_SIZE);
@@ -96,15 +105,21 @@ public class Ui1 extends Application {
 		pound.setStyle(Style.FONT_SIZE);
 		pound.setOnAction(e -> EventImpl.process(e));
 		
-		Button end = new Button("End"); 
-		end.setId("end");
-		end.setStyle(Style.FONT_SIZE);
-		end.setOnAction(e -> EventImpl.process(e));
-		
-		Button call = new Button("Call");
+		ImageView iv = new ImageView(new Image(getClass().getClassLoader().getResourceAsStream("phone_1.png")));
+		iv.setFitWidth(27);
+		iv.setFitHeight(32);
+		Button call = new Button("", iv);
 		call.setId("call");
-		call.setStyle(Style.FONT_SIZE);
 		call.setOnAction(e -> EventImpl.process(e));
+		call.setPadding(new Insets(3, 3, 3, 3));
+		
+		iv = new ImageView(new Image(getClass().getClassLoader().getResourceAsStream("hangup.png")));
+		iv.setFitWidth(27);
+		iv.setFitHeight(32);
+		Button end = new Button("", iv); 
+		end.setId("end");
+		end.setOnAction(e -> EventImpl.process(e));
+		end.setPadding(new Insets(3, 3, 3, 3));
 		
 		Button reg = new Button("Regist"); 
 		reg.setId("reg");
@@ -123,27 +138,28 @@ public class Ui1 extends Application {
 		input.setOnKeyPressed(e -> EventImpl.process(e));
 		input.setOnKeyReleased(e -> EventImpl.process(e));
 		
-		gridPane.add(input, 0, 0, 3, 1);
-		gridPane.add(call, 4, 0); 
+//		GridPane.setMargin(input, new Insets(0, 3, 0, 0));
+		gridPane1.add(input, 0, 0);
+		gridPane1.add(call, 1, 0); 
+		gridPane1.add(end, 2, 0); 
+		gridPane.add(gridPane1, 0, 0);
 		
-		gridPane.add(button1, 0, 1); 
-		gridPane.add(button2, 1, 1); 
-		gridPane.add(button3, 2, 1); 
-//		gridPane.add(end, 5, 0); 
+		gridPane2.add(button1, 0, 0); 
+		gridPane2.add(button2, 1, 0); 
+		gridPane2.add(button3, 2, 0); 
 		
-		gridPane.add(button4, 0, 2); 
-		gridPane.add(button5, 1, 2); 
-		gridPane.add(button6, 2, 2); 
-//		gridPane.add(reg, 3, 1); 
-//		gridPane.add(unReg, 4, 1); 
+		gridPane2.add(button4, 0, 1); 
+		gridPane2.add(button5, 1, 1); 
+		gridPane2.add(button6, 2, 1); 
 		
-		gridPane.add(button7, 0, 3); 
-		gridPane.add(button8, 1, 3); 
-		gridPane.add(button9, 2, 3); 
+		gridPane2.add(button7, 0, 2); 
+		gridPane2.add(button8, 1, 2); 
+		gridPane2.add(button9, 2, 2); 
 		
-		gridPane.add(asterisk, 0, 4); 
-		gridPane.add(button0, 1, 4); 
-		gridPane.add(pound, 2, 4);
+		gridPane2.add(asterisk, 0, 3); 
+		gridPane2.add(button0, 1, 3); 
+		gridPane2.add(pound, 2, 3);
+		gridPane.add(gridPane2, 0, 1);
 	}
 	
 	private GridPane layout() {
