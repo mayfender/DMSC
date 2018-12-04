@@ -24,12 +24,14 @@ public class Ui1 extends Application {
 		try {
 			//1.
 	        scene = new Scene(layout());
+	        scene.getStylesheets().add(getClass().getClassLoader().getResource("style.css").toExternalForm());
 	        scene.setFill(Color.BROWN);
 	        	        
 	        //2.
 	        primaryStage.getIcons().add(new Image(getClass().getClassLoader().getResource("icon.png").toString()));
 	        primaryStage.setTitle("DMS Phone : ");
 	        primaryStage.setScene(scene);
+	        primaryStage.setResizable(false);
 	        primaryStage.show();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -138,7 +140,6 @@ public class Ui1 extends Application {
 		input.setOnKeyPressed(e -> EventImpl.process(e));
 		input.setOnKeyReleased(e -> EventImpl.process(e));
 		
-//		GridPane.setMargin(input, new Insets(0, 3, 0, 0));
 		gridPane1.add(input, 0, 0);
 		gridPane1.add(call, 1, 0); 
 		gridPane1.add(end, 2, 0); 
@@ -164,10 +165,8 @@ public class Ui1 extends Application {
 	
 	private GridPane layout() {
 		GridPane gridPane = new GridPane();
-		gridPane.setMinSize(500, 200);
-		gridPane.setPadding(new Insets(10, 10, 10, 10)); 
-		gridPane.setVgap(5); 
-		gridPane.setHgap(5);
+		gridPane.getStyleClass().add("grid-container");
+//		gridPane.setGridLinesVisible(true);
 		
 		//1. createNotes
 		createNodes(gridPane);
