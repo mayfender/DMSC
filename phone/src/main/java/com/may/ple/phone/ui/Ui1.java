@@ -1,13 +1,17 @@
 package com.may.ple.phone.ui;
 
 import javafx.application.Application;
+import javafx.geometry.HPos;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Priority;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
@@ -32,6 +36,7 @@ public class Ui1 extends Application {
 	        primaryStage.setTitle("DMS Phone : ");
 	        primaryStage.setScene(scene);
 	        primaryStage.setResizable(false);
+	        primaryStage.sizeToScene();
 	        primaryStage.show();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -46,6 +51,11 @@ public class Ui1 extends Application {
 		GridPane gridPane2 = new GridPane();
 		gridPane2.setVgap(5); 
 		gridPane2.setHgap(5);
+		
+		GridPane gridPane3 = new GridPane();
+		gridPane3.setAlignment(Pos.CENTER);
+		gridPane3.setVgap(5); 
+		gridPane3.setHgap(5);
 		
 		Button button1 = new Button("1"); 
 		button1.setId("1");
@@ -143,7 +153,14 @@ public class Ui1 extends Application {
 		gridPane1.add(input, 0, 0);
 		gridPane1.add(call, 1, 0); 
 		gridPane1.add(end, 2, 0); 
-		gridPane.add(gridPane1, 0, 0);
+		gridPane.add(gridPane1, 0, 0, 2, 1); // Row 0
+		
+		Button test = new Button("<>");
+		test.setId("test");
+		test.setStyle(Style.FONT_SIZE);
+		test.setOnAction(e -> EventImpl.process(e));
+		gridPane3.add(test, 0, 0);
+		gridPane.add(gridPane3, 0, 1); // Row 1, Cell 0
 		
 		gridPane2.add(button1, 0, 0); 
 		gridPane2.add(button2, 1, 0); 
@@ -160,13 +177,21 @@ public class Ui1 extends Application {
 		gridPane2.add(asterisk, 0, 3); 
 		gridPane2.add(button0, 1, 3); 
 		gridPane2.add(pound, 2, 3);
-		gridPane.add(gridPane2, 0, 1);
+		gridPane.add(gridPane2, 1, 1); // Row 1, Cell 1
 	}
 	
 	private GridPane layout() {
 		GridPane gridPane = new GridPane();
 		gridPane.getStyleClass().add("grid-container");
 //		gridPane.setGridLinesVisible(true);
+		
+		ColumnConstraints col1 = new ColumnConstraints();
+	    col1.setHgrow( Priority.ALWAYS );
+
+	    ColumnConstraints col2 = new ColumnConstraints();
+	    col2.setHgrow( Priority.NEVER );
+		
+		gridPane.getColumnConstraints().addAll(col1, col2);
 		
 		//1. createNotes
 		createNodes(gridPane);
