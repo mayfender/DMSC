@@ -3,7 +3,7 @@ package com.may.ple.phone.ui;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import javafx.scene.effect.DropShadow;
+import javafx.scene.effect.InnerShadow;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 
@@ -39,7 +39,7 @@ public class EventImpl {
 				((Button)Ui1.scene.lookup("#call")).fire();				
 			} else {
 				Button b = (Button)Ui1.scene.lookup("#" + getId(e.getText()));
-				b.setEffect(new DropShadow());
+				b.setEffect(new InnerShadow());
 			}
 		} else if(e.getEventType() == KeyEvent.KEY_RELEASED) {
     		Button b1 = (Button)Ui1.scene.lookup("#" + getId(e.getText()));
