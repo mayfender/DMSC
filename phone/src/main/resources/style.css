@@ -1,6 +1,36 @@
 .grid-container {
-	-fx-background-color: #996633;
+	-fx-background-color: #275d8b;
+    -fx-padding: 2;
+    -fx-hgap: 2;
+    -fx-vgap: 2;
+}
+.gridPane1 {
+	-fx-background-color: #ffdb4d;
+	-fx-background-radius: 5 5 0 0;
     -fx-padding: 5;
-    -fx-hgap: 5;
-    -fx-vgap: 5;
+    -fx-hgap: 3;
+    -fx-vgap: 3;
+}
+.gridPane2 {
+	-fx-background-color: #ffe680;
+    -fx-padding: 3;
+    -fx-alignment: center ;
+}
+.gridPane3 {
+    -fx-hgap: 0;
+    -fx-vgap: 0;
+}
+.gridPane4 {
+	-fx-background-color: #fff0b3;
+	-fx-background-radius: 0 0 5 5;
+	-fx-padding: 3;
+    -fx-hgap: 3;
+    -fx-vgap: 3;
+}
+.keypad {
+	-fx-pref-width: 40;
+	-fx-font-size: 12pt;
+}
+.call, .hangup, .input {
+	-fx-font-size: 12pt;
 }

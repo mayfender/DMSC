@@ -1,11 +1,10 @@
 package com.may.ple.phone.ui;
 
 import javafx.application.Application;
-import javafx.geometry.HPos;
 import javafx.geometry.Insets;
-import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -45,82 +44,82 @@ public class Ui1 extends Application {
 	
 	private void createNodes(GridPane gridPane) {
 		GridPane gridPane1 = new GridPane();
-		gridPane1.setVgap(3); 
-		gridPane1.setHgap(3);
+		gridPane1.getStyleClass().add("gridPane1");
 		
 		GridPane gridPane2 = new GridPane();
-		gridPane2.setVgap(5); 
-		gridPane2.setHgap(5);
+		gridPane2.getStyleClass().add("gridPane2");
 		
 		GridPane gridPane3 = new GridPane();
-		gridPane3.setAlignment(Pos.CENTER);
-		gridPane3.setVgap(5); 
-		gridPane3.setHgap(5);
+		gridPane3.getStyleClass().add("gridPane3");
+		
+		GridPane gridPane4 = new GridPane();
+		gridPane4.getStyleClass().add("gridPane4");
 		
 		Button button1 = new Button("1"); 
+		button1.getStyleClass().add("keypad");
 		button1.setId("1");
-		button1.setStyle(Style.FONT_SIZE);
 		button1.setOnAction(e -> EventImpl.process(e));
 		
 		Button button2 = new Button("2");
+		button2.getStyleClass().add("keypad");
 		button2.setId("2");
-		button2.setStyle(Style.FONT_SIZE);
 		button2.setOnAction(e -> EventImpl.process(e));
 		
 		Button button3 = new Button("3");
+		button3.getStyleClass().add("keypad");
 		button3.setId("3");
-		button3.setStyle(Style.FONT_SIZE);
 		button3.setOnAction(e -> EventImpl.process(e));
 		
 		Button button4 = new Button("4");
+		button4.getStyleClass().add("keypad");
 		button4.setId("4");
-		button4.setStyle(Style.FONT_SIZE);
 		button4.setOnAction(e -> EventImpl.process(e));
 		
 		Button button5 = new Button("5");
+		button5.getStyleClass().add("keypad");
 		button5.setId("5");
-		button5.setStyle(Style.FONT_SIZE);
 		button5.setOnAction(e -> EventImpl.process(e));
 		
 		Button button6 = new Button("6");
+		button6.getStyleClass().add("keypad");
 		button6.setId("6");
-		button6.setStyle(Style.FONT_SIZE);
 		button6.setOnAction(e -> EventImpl.process(e));
 		
 		Button button7 = new Button("7");
+		button7.getStyleClass().add("keypad");
 		button7.setId("7");
-		button7.setStyle(Style.FONT_SIZE);
 		button7.setOnAction(e -> EventImpl.process(e));
 		
 		Button button8 = new Button("8");
+		button8.getStyleClass().add("keypad");
 		button8.setId("8");
-		button8.setStyle(Style.FONT_SIZE);
 		button8.setOnAction(e -> EventImpl.process(e));
 		
 		Button button9 = new Button("9");
+		button9.getStyleClass().add("keypad");
 		button9.setId("9");
-		button9.setStyle(Style.FONT_SIZE);
 		button9.setOnAction(e -> EventImpl.process(e));
 		
 		Button asterisk = new Button("*");
+		asterisk.getStyleClass().add("keypad");
 		asterisk.setId("asterisk");
-		asterisk.setStyle(Style.FONT_SIZE);
 		asterisk.setOnAction(e -> EventImpl.process(e));
 		
 		Button button0 = new Button("0");
+		button0.getStyleClass().add("keypad");
 		button0.setId("0");
-		button0.setStyle(Style.FONT_SIZE);
 		button0.setOnAction(e -> EventImpl.process(e));
 		
 		Button pound = new Button("#");
+		pound.getStyleClass().add("keypad");
 		pound.setId("pound");
-		pound.setStyle(Style.FONT_SIZE);
 		pound.setOnAction(e -> EventImpl.process(e));
 		
 		ImageView iv = new ImageView(new Image(getClass().getClassLoader().getResourceAsStream("phone_1.png")));
 		iv.setFitWidth(27);
 		iv.setFitHeight(32);
 		Button call = new Button("", iv);
+		call.getStyleClass().add("call");
 		call.setId("call");
 		call.setOnAction(e -> EventImpl.process(e));
 		call.setPadding(new Insets(3, 3, 3, 3));
@@ -129,24 +128,25 @@ public class Ui1 extends Application {
 		iv.setFitWidth(27);
 		iv.setFitHeight(32);
 		Button end = new Button("", iv); 
+		end.getStyleClass().add("hangup");
 		end.setId("end");
 		end.setOnAction(e -> EventImpl.process(e));
 		end.setPadding(new Insets(3, 3, 3, 3));
 		
-		Button reg = new Button("Regist"); 
+		/*Button reg = new Button("Regist"); 
 		reg.setId("reg");
 		reg.setStyle(Style.FONT_SIZE);
-		reg.setOnAction(e -> EventImpl.process(e));
+		reg.setOnAction(e -> EventImpl.process(e));*/
 		
-		Button unReg = new Button("Unregist"); 
+		/*Button unReg = new Button("Unregist"); 
 		unReg.setId("unReg");
 		unReg.setStyle(Style.FONT_SIZE);
-		unReg.setOnAction(e -> EventImpl.process(e));
+		unReg.setOnAction(e -> EventImpl.process(e));*/
 		
 		TextField input = new TextField();
+		input.getStyleClass().add("input");
 		input.setId("input");
 		input.setPromptText("Enter name or number");
-		input.setStyle(Style.FONT_SIZE);
 		input.setOnKeyPressed(e -> EventImpl.process(e));
 		input.setOnKeyReleased(e -> EventImpl.process(e));
 		
@@ -156,28 +156,30 @@ public class Ui1 extends Application {
 		gridPane.add(gridPane1, 0, 0, 2, 1); // Row 0
 		
 		Button test = new Button("<>");
-		test.setId("test");
-		test.setStyle(Style.FONT_SIZE);
 		test.setOnAction(e -> EventImpl.process(e));
-		gridPane3.add(test, 0, 0);
-		gridPane.add(gridPane3, 0, 1); // Row 1, Cell 0
+		gridPane2.add(test, 0, 0);
+		gridPane.add(gridPane2, 0, 1); // Row 1, Cell 0
 		
-		gridPane2.add(button1, 0, 0); 
-		gridPane2.add(button2, 1, 0); 
-		gridPane2.add(button3, 2, 0); 
+		gridPane3.add(button1, 0, 0); 
+		gridPane3.add(button2, 1, 0); 
+		gridPane3.add(button3, 2, 0); 
 		
-		gridPane2.add(button4, 0, 1); 
-		gridPane2.add(button5, 1, 1); 
-		gridPane2.add(button6, 2, 1); 
+		gridPane3.add(button4, 0, 1); 
+		gridPane3.add(button5, 1, 1); 
+		gridPane3.add(button6, 2, 1); 
 		
-		gridPane2.add(button7, 0, 2); 
-		gridPane2.add(button8, 1, 2); 
-		gridPane2.add(button9, 2, 2); 
+		gridPane3.add(button7, 0, 2); 
+		gridPane3.add(button8, 1, 2); 
+		gridPane3.add(button9, 2, 2); 
 		
-		gridPane2.add(asterisk, 0, 3); 
-		gridPane2.add(button0, 1, 3); 
-		gridPane2.add(pound, 2, 3);
-		gridPane.add(gridPane2, 1, 1); // Row 1, Cell 1
+		gridPane3.add(asterisk, 0, 3); 
+		gridPane3.add(button0, 1, 3); 
+		gridPane3.add(pound, 2, 3);
+		gridPane.add(gridPane3, 1, 1); // Row 1, Cell 1
+		
+		Slider slider = new Slider();
+		gridPane4.add(slider, 0, 0);
+		gridPane.add(gridPane4, 0, 2, 2, 1); // Row 2
 	}
 	
 	private GridPane layout() {
