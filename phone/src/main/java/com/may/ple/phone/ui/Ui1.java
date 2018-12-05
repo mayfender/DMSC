@@ -31,7 +31,7 @@ public class Ui1 extends Application {
 	        scene.setFill(Color.BROWN);
 	        	        
 	        //2.
-	        primaryStage.getIcons().add(new Image(getClass().getClassLoader().getResource("icon.png").toString()));
+	        primaryStage.getIcons().add(new Image(getClass().getClassLoader().getResource("logo.png").toString()));
 	        primaryStage.setTitle("DMS Phone : ");
 	        primaryStage.setScene(scene);
 	        primaryStage.setResizable(false);
