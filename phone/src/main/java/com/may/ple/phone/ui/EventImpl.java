@@ -3,12 +3,11 @@ package com.may.ple.phone.ui;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import javafx.scene.effect.InnerShadow;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 
 public class EventImpl {
-
+	
 	public static void process(ActionEvent e) {
 		if(e.getSource() instanceof Button) {
 			Button button = ((Button)e.getSource());
@@ -37,17 +36,19 @@ public class EventImpl {
 		if(e.getEventType() == KeyEvent.KEY_PRESSED) {
 			if (e.getCode().equals(KeyCode.ENTER)) {
 				((Button)Ui1.scene.lookup("#call")).fire();				
-			} else {
+			} /*else if(!e.getText().trim().equals("") && keys.contains(e.getText().trim())){
 				Button b = (Button)Ui1.scene.lookup("#" + getId(e.getText()));
 				b.setEffect(new InnerShadow());
+			}*/
+		} /*else if(e.getEventType() == KeyEvent.KEY_RELEASED) {
+			if(!e.getText().trim().equals("") && keys.contains(e.getText().trim())){
+	    		Button b1 = (Button)Ui1.scene.lookup("#" + getId(e.getText()));
+	    		b1.setEffect(null);
 			}
-		} else if(e.getEventType() == KeyEvent.KEY_RELEASED) {
-    		Button b1 = (Button)Ui1.scene.lookup("#" + getId(e.getText()));
-    		b1.setEffect(null);
-		}
+		}*/
 	}
 	
-	private static String getId(String txt) {
+	/*private static String getId(String txt) {
 		if(txt.equals("*")) {
 			return "asterisk";
 		} else if(txt.equals("#")) {
@@ -55,6 +56,6 @@ public class EventImpl {
 		} else {
 			return txt;
 		}
-	}
+	}*/
 
 }
