@@ -1,4 +1,4 @@
-package com.may.ple.phone.ui;
+/*package com.may.ple.phone.ui;
 
 import javafx.application.Application;
 import javafx.geometry.Insets;
@@ -133,15 +133,15 @@ public class Ui1 extends Application {
 		end.setOnAction(e -> EventImpl.process(e));
 		end.setPadding(new Insets(3, 3, 3, 3));
 		
-		/*Button reg = new Button("Regist"); 
+		Button reg = new Button("Regist"); 
 		reg.setId("reg");
 		reg.setStyle(Style.FONT_SIZE);
-		reg.setOnAction(e -> EventImpl.process(e));*/
+		reg.setOnAction(e -> EventImpl.process(e));
 		
-		/*Button unReg = new Button("Unregist"); 
+		Button unReg = new Button("Unregist"); 
 		unReg.setId("unReg");
 		unReg.setStyle(Style.FONT_SIZE);
-		unReg.setOnAction(e -> EventImpl.process(e));*/
+		unReg.setOnAction(e -> EventImpl.process(e));
 		
 		TextField input = new TextField();
 		input.getStyleClass().add("input");
@@ -207,3 +207,4 @@ public class Ui1 extends Application {
 	}
 
 }
+*/

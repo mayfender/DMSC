@@ -5,10 +5,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
-import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
-public class Ui2 extends Application {
+public class FXMLUI extends Application {
 	
 	@Override
 	public void init() throws Exception {
@@ -19,14 +18,13 @@ public class Ui2 extends Application {
 	public void start(Stage primaryStage) throws Exception {
 		try {
 			Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("fxml_example.fxml"));
-			
-			Scene scene = new Scene(root, 300, 275);
-	        scene.setFill(Color.BROWN);
+			Scene scene = new Scene(root);
 	        
-	        //--------
-	        primaryStage.getIcons().add(new Image(getClass().getClassLoader().getResource("icon.png").toString()));
-	        primaryStage.setTitle("FXML Welcome");
+	        primaryStage.getIcons().add(new Image(getClass().getClassLoader().getResource("logo.png").toString()));
+	        primaryStage.setTitle("FXML DMS Phone : ");
 	        primaryStage.setScene(scene);
+	        primaryStage.setResizable(false);
+	        primaryStage.sizeToScene();
 	        primaryStage.show();
 		} catch (Exception e) {
 			e.printStackTrace();

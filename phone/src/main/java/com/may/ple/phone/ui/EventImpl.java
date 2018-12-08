@@ -8,16 +8,14 @@ import javafx.scene.input.KeyEvent;
 
 public class EventImpl {
 	
-	public static void process(ActionEvent e) {
+	public static void process(ActionEvent e, TextField input) {
 		if(e.getSource() instanceof Button) {
 			Button button = ((Button)e.getSource());
 			
 			if(button.getId().equals("call")) {
-				TextField input = (TextField)Ui1.scene.lookup("#input");
 				System.out.println("call..." + input.getText());
 //					wobj.API_Call(-1, input.getText().trim());
 			} else if(button.getId().equals("end")) {
-				TextField input = (TextField)Ui1.scene.lookup("#input");
 				System.out.println("end..." + input.getText());
 //					wobj.API_Hangup(-1);				
 			} else if(button.getId().equals("reg")) {
@@ -25,17 +23,16 @@ public class EventImpl {
 			} else if(button.getId().equals("unReg")) {
 //					wobj.API_Unregister();
 			} else {
-				TextField input = (TextField)Ui1.scene.lookup("#input");
 				input.setText(input.getText() + button.getText());
 				System.out.println(button.getText());					
 			}
 		}
 	}
 	
-	public static void process(KeyEvent e) {
+	public static void process(KeyEvent e, Button call) {
 		if(e.getEventType() == KeyEvent.KEY_PRESSED) {
 			if (e.getCode().equals(KeyCode.ENTER)) {
-				((Button)Ui1.scene.lookup("#call")).fire();				
+				call.fire();				
 			} /*else if(!e.getText().trim().equals("") && keys.contains(e.getText().trim())){
 				Button b = (Button)Ui1.scene.lookup("#" + getId(e.getText()));
 				b.setEffect(new InnerShadow());

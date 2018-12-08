@@ -33,4 +33,5 @@
 }
 .call, .hangup, .input {
 	-fx-font-size: 12pt;
+	-fx-padding: 5;
 }
