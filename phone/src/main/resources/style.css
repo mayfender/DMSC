@@ -7,7 +7,7 @@
 .gridPane1 {
 	-fx-background-color: #ffdb4d;
 	-fx-background-radius: 5 5 0 0;
-    -fx-padding: 5;
+    -fx-padding: 5 3 3 3;
     -fx-hgap: 3;
     -fx-vgap: 3;
 }
@@ -34,4 +34,7 @@
 .call, .hangup, .input {
 	-fx-font-size: 12pt;
 	-fx-padding: 5;
+}
+.listView {
+	-fx-font-size: 8pt;
 }

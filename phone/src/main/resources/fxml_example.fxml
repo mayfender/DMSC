@@ -9,6 +9,7 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.control.Slider?>
+<?import javafx.scene.control.ListView?>
 
 <GridPane fx:controller="com.may.ple.phone.ui.Controller" xmlns:fx="http://javafx.com/fxml" styleClass="grid-container">
 	<stylesheets>
@@ -44,7 +45,7 @@
 		</Button>
 	</GridPane>	
 	<GridPane styleClass="gridPane2" GridPane.columnIndex="0" GridPane.rowIndex="1">
-		<Button id="end" GridPane.columnIndex="0" GridPane.rowIndex="0" text="histrotry" />
+		<ListView fx:id="listView" styleClass="listView" prefWidth="150" prefHeight="230" />
 	</GridPane>	
 	<GridPane styleClass="gridPane3" GridPane.columnIndex="1" GridPane.rowIndex="1">
 		<Button styleClass="keypad" GridPane.columnIndex="0" GridPane.rowIndex="0" text="1" onAction="#handleAction" id="1" />

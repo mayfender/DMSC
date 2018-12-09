@@ -21,7 +21,7 @@ public class FXMLUI extends Application {
 			Scene scene = new Scene(root);
 	        
 	        primaryStage.getIcons().add(new Image(getClass().getClassLoader().getResource("logo.png").toString()));
-	        primaryStage.setTitle("FXML DMS Phone : ");
+	        primaryStage.setTitle("DMS Phone : ");
 	        primaryStage.setScene(scene);
 	        primaryStage.setResizable(false);
 	        primaryStage.sizeToScene();
