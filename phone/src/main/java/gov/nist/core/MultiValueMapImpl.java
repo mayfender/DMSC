@@ -42,7 +42,7 @@ public class MultiValueMapImpl<V> implements MultiValueMap<String, V>, Cloneable
         super();
     }
 
-    public List<V> put(String key, V value) {    	
+    public List<V> put(String key, V value) {
         ArrayList<V> keyList = null;
         if(map != null) {
         	keyList = map.get(key);
@@ -56,7 +56,8 @@ public class MultiValueMapImpl<V> implements MultiValueMap<String, V>, Cloneable
         return keyList;
     }
 
-    public boolean containsValue(Object value) {
+    @Override
+	public boolean containsValue(Object value) {
         Set pairs = null;
         if(map != null) {
         	pairs = map.entrySet();
@@ -74,7 +75,8 @@ public class MultiValueMapImpl<V> implements MultiValueMap<String, V>, Cloneable
         return false;
     }
 
-    public void clear() {
+    @Override
+	public void clear() {
     	if(map != null) {
 	        Set pairs = map.entrySet();
 	        Iterator pairsIterator = pairs.iterator();
@@ -87,7 +89,8 @@ public class MultiValueMapImpl<V> implements MultiValueMap<String, V>, Cloneable
     	}
     }
 
-    public Collection values() {
+    @Override
+	public Collection values() {
     	if(map == null) {
     		return new ArrayList();
     	}
@@ -107,7 +110,8 @@ public class MultiValueMapImpl<V> implements MultiValueMap<String, V>, Cloneable
         return returnList;
     }
 
-    public Object clone() {
+    @Override
+	public Object clone() {
         MultiValueMapImpl obj = new MultiValueMapImpl<V>();
         if(map != null) {
         	obj.map = (HashMap<Object, ArrayList<V>>) this.map.clone();
@@ -115,77 +119,87 @@ public class MultiValueMapImpl<V> implements MultiValueMap<String, V>, Cloneable
         return obj;
     }
 
-    public int size() {
+    @Override
+	public int size() {
     	if(map == null) {
     		return 0;
     	}
         return this.map.size();
     }
 
-    public boolean containsKey(Object key) {
+    @Override
+	public boolean containsKey(Object key) {
     	if(map == null) {
     		return false;
     	}
         return map.containsKey(key);
     }
 
-    public Set entrySet() {
+    @Override
+	public Set entrySet() {
     	if(map == null) {
     		return new HashSet();
     	}
         return map.entrySet();
     }
 
-    public boolean isEmpty() {
+    @Override
+	public boolean isEmpty() {
     	if(map == null) {
     		return true;
     	}
         return map.isEmpty();
     }
 
-    public Set<String> keySet() {
+    @Override
+	public Set<String> keySet() {
     	if(map == null) {
     		return new HashSet<String>();
     	}
         return this.map.keySet();
     }
 
-    public Object remove(String key, V item) {
+    @Override
+	public boolean remove(Object key, Object item) {
     	if(map == null) {
-    		return null;
+    		return false;
     	}
         ArrayList<V> list = this.map.get(key);
         if (list == null) {
-            return null;
+            return false;
         } else {
             return list.remove(item);
         }
     }
 
-    public List<V> get(Object key) {
+    @Override
+	public List<V> get(Object key) {
     	if(map == null) {
     		return null;
     	}
         return map.get(key);
     }
 
-    public List<V> put(String key, List<V> value) {
+    @Override
+	public List<V> put(String key, List<V> value) {
         return this.getMap().put(key,(ArrayList<V>) value);
     }
 
-    public List<V> remove(Object key) {
+    @Override
+	public List<V> remove(Object key) {
     	if(map == null) {
     		return null;
     	}
         return map.remove(key);
     }
-    
-    public void putAll(Map< ? extends String, ? extends List<V>> mapToPut) {
+
+    @Override
+	public void putAll(Map< ? extends String, ? extends List<V>> mapToPut) {
         for (String k : mapToPut.keySet()) {
             ArrayList<V> al = new ArrayList<V>();
             al.addAll(mapToPut.get(k));
             getMap().put(k, al);
-        }  
+        }
     }
 
 

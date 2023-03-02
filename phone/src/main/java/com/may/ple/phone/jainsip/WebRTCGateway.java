@@ -691,6 +691,7 @@ public class WebRTCGateway implements SipListener {
 		sipFactory.setPathName("gov.nist");
 
 		//---: https://javadoc.io/doc/javax.sip/jain-sip-ri/latest/index.html
+		//---: On class : gov.nist.javax.sip.SipStackImpl
 		//---: Online Documents
 
 		Properties properties = new Properties();
