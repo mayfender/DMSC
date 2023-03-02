@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="theme-color" content="#db5945">
+	<title>WebRTC</title>
+	<script src="jssip.js"></script>
+	<style type="text/css">
+	
+	</style>
+</head>
+<body>
+
+	<h1 class="vertical-container">WebRTC Testing</h1>
+	
+	<p id="g1">
+	User <input type="text" name="user" value="100" />
+	<button onclick="start()">Register</button>
+	</p>
+	
+	<p id="g2">
+	Call To <input type="text" name="callee" value="109" />
+	<button onclick="call()">call</button>
+	</p>
+
+<script>
+var ua;
+
+//window.oSipAudio = document.createElement("audio");
+//var audio = document.getElementById('audio');
+
+function register() {
+	//var configuration = ua.configuration;
+	//configuration.authorization_user = 101;
+	//console.log(ua);
+	
+	ua.configuration.uri._user = 101;
+	console.log(ua.configuration.uri._user);
+	console.log(ua.configuration);
+	
+	//ua.register();
+}
+
+function call() {
+	var ringbacktone = document.getElementById('ringbacktone');
+	 var eventHandlers = {
+		'progress': function(e) {
+		    console.log('call is in progress');
+		    if (e.originator === 'remote') {
+		    	 // play a ringing file
+		    	 ringbacktone.play();
+		    }
+		},
+		'failed': function(e) {
+			console.log(e);
+		    console.log('call failed with cause: ');
+		    
+		    var audio = document.createElement('audio');
+		    audio.pause();
+		    audio.currentTime = 0;
+		    
+		    ringbacktone.pause();
+			ringbacktone.currentTime = 0;
+		},
+		'ended': function(e) {
+			console.log(e);
+		    console.log('call ended with cause: ');
+		    
+		    var audio = document.createElement('audio');
+		    audio.pause();
+		    audio.currentTime = 0;
+		    
+		    ringbacktone.pause();
+			ringbacktone.currentTime = 0;
+		},
+		'confirmed': function(e) {
+		    console.log('call confirmed');
+			console.log(e);
+			ringbacktone.pause();
+			ringbacktone.currentTime = 0;
+		},
+		'reinvite': function(e) {
+		    console.log('########################### call reinvite');
+			console.log(e);
+		}
+	}; 
+	var options = {
+		'pcConfig' : {
+			//rtcpMuxPolicy: "negotiate",  //---: fixed rtcp-mux issue for SiP proxy that not support it. The new browser will be "require" by default.
+			iceServers :[{ urls : [ 'stun:stun.l.google.com:19302' ] }]
+		},  
+		'eventHandlers'    : eventHandlers,
+		'mediaConstraints' : { 'audio': true, 'video': false },
+		'sessionTimersExpires': 1800   //---: refreshing session, default value is 90 seconds
+	};
+
+	var session = ua.call('sip:' + document.getElementsByName("callee")[0].value+ '@192.168.43.100:5060', options);
+	
+	session.connection.onaddstream = function(e) {
+		console.log('# addstream');
+		
+		var audio = document.createElement('audio');
+	    audio.srcObject = e.stream;
+	    audio.play();
+	}
+}
+
+function start() {
+	var socket = new JsSIP.WebSocketInterface('ws://127.0.0.1:9001');
+	var configuration = {
+	  sockets  : [ socket ],
+	  uri      : 'sip:' + document.getElementsByName("user")[0].value + '@192.168.43.100:5060',
+	  display_name: 'Mayfender',
+	  password : 'abc123',
+	  realm: 'asterisk',
+	  register_expires: 60
+	  //use_preloaded_route: true
+	  //register: false
+	};
+	
+	JsSIP.debug.enable('JsSIP:*');
+	ua = new JsSIP.UA(configuration);
+	
+	ua.on('connected', function(e){ 
+		console.log('connected');
+		
+	});
+	ua.on('registered', function(e){ 
+		console.log('registered');
+		document.getElementById("g1").style.display = 'none';
+	});
+	
+	ua.on('newRTCSession',function(e){
+		console.log('newRTCSession');
+        console.log(e);
+        
+        if(e.originator == "remote"){
+        	console.log('comming from remote');
+            var session = e.session;
+            
+        	var ringtone = document.getElementById('ringtone');
+        	ringtone.play();
+            
+            session.on('ended', function(){
+            	console.log('ended');
+            	
+            	ringtone.pause();
+            	ringtone.currentTime = 0;
+            });
+            session.on('failed', function(){
+            	console.log('failed');
+            	
+            	ringtone.pause();
+            	ringtone.currentTime = 0;
+            });
+            session.on('accepted', function(){
+            	console.log('accepted');
+            	
+            	ringtone.pause();
+            	ringtone.currentTime = 0;
+            });
+            session.on('confirmed', function(){
+            	console.log('confirmed');
+            	
+            	ringtone.pause();
+            	ringtone.currentTime = 0;
+            });
+            session.on('sdp', function(e) {
+            	console.log('sdp event ' + e.originator + ':' + e.type);
+            	if(e.originator == 'remote' && e.type == 'offer') {
+            		console.log('remote:offer');
+            		var sdp = e.sdp;
+            		//console.log(sdp);
+            		
+            		var index_1 = sdp.indexOf('a=crypto');
+            		
+            		if(index_1 > 0) {
+            			e.sdp = sdp.substring(0, index_1);
+            			
+	            		var sdpSpr_2 = sdp.substring(sdp.indexOf('\n', sdp.lastIndexOf('a=crypto')) + 1);
+	            		if(sdpSpr_2) {
+	            			e.sdp += sdpSpr_2;
+	            			//console.log('+++++++++++++++++++++++++++++++++');
+	            			//console.log(e.sdp);
+	            		}
+	            		console.log(e.sdp);
+	            		console.log('Remmove a=crypto');
+            		}
+            	} else if(e.originator == 'local' && e.type == 'answer') {
+            		 console.log('local:answer');
+            	}
+            });
+           
+            session.on('icecandidate', function(e) {
+            	console.log("icecandidate");
+            });
+            
+            session.answer({
+            	'pcConfig' : {
+        			//rtcpMuxPolicy: "negotiate",  //---: fixed rtcp-mux issue for SiP proxy that not support it. The new browser will be "require" by default.
+        			iceServers :[{ urls : [ 'stun:stun.l.google.com:19302' ] }]
+        		}, 
+            	mediaConstraints : { 'audio': true, 'video': false },
+            	sessionTimersExpires : 1800   //---: refreshing session, default value is 90 seconds
+            });
+       	
+            //---:
+            session.connection.onaddstream = function(e) {
+				console.log('# addstream receive call.');
+			
+				var audio = document.createElement('audio');
+			    audio.srcObject = e.stream;
+			    audio.play();
+        	}
+        }   
+	});
+	
+	ua.start();
+}
+</script>
+
+<audio id="ringtone" src="Ring.mp3" loop></audio>
+<audio id="ringbacktone" src="outgoing.mp3" loop></audio>
+</body>
+</html>

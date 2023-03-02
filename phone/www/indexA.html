@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="theme-color" content="#db5945">
+	<title>WebRTC</title>
+	<script src="jssip_custom.js"></script>
+	<style type="text/css">
+	
+	</style>
+</head>
+<body>
+	<h1 class="vertical-container">WebRTC Testing</h1>
+	
+	<p id="g1">
+	User <input type="text" name="user" value="100" />
+	<button onclick="start()">Register</button>
+	</p>
+	
+	<p id="g2">
+	Call To <input type="text" name="callee" value="109" />
+	<button onclick="call()">call</button>
+	</p>
+
+	
+	
+<script>
+var ua;
+
+//window.oSipAudio = document.createElement("audio");
+//var audio = document.getElementById('audio');
+
+function register() {
+	//var configuration = ua.configuration;
+	//configuration.authorization_user = 101;
+	//console.log(ua);
+	
+	ua.configuration.uri._user = 101;
+	console.log(ua.configuration.uri._user);
+	console.log(ua.configuration);
+	
+	//ua.register();
+}
+
+function call() {
+	 var eventHandlers = {
+		'progress': function(e) {
+		    console.log('call is in progress');
+		},
+		'failed': function(e) {
+			console.log(e);
+		    console.log('call failed with cause: ');
+		},
+		'ended': function(e) {
+			console.log(e);
+		    console.log('call ended with cause: ');
+		},
+		'confirmed': function(e) {
+		    console.log('call confirmed');
+			console.log(e);
+		}
+	}; 
+	var options = {
+		'pcConfig' : {
+			rtcpMuxPolicy: "negotiate",  //---: fixed rtcp-mux issue for SiP proxy that not support it. The new browser will be "require" by default.
+			iceServers :[{ urls : [ 'stun:stun.l.google.com:19302' ] }]
+			//iceServers :[]
+		},  
+		'eventHandlers'    : eventHandlers,
+		'mediaConstraints' : { 'audio': true, 'video': false }
+	};
+
+	var session = ua.call('sip:' + document.getElementsByName("callee")[0].value+ '@192.168.43.100:5060', options);
+	
+	session.connection.onaddstream = function(e) {
+		console.log(e);
+		var audio = document.createElement('audio');
+	    audio.srcObject = e.stream;
+	    audio.play();  
+	}
+}
+
+function start() {
+	var socket = new JsSIP.WebSocketInterface('ws://127.0.0.1:9000');
+	var configuration = {
+	  sockets  : [ socket ],
+	  uri      : 'sip:' + document.getElementsByName("user")[0].value + '@192.168.43.100:5060',
+	  display_name: 'Mayfender',
+	  password : 'abc123',
+	  realm: 'asterisk',
+	  register_expires: 200,
+	  use_preloaded_route: true
+	  //register: false
+	};
+	
+	JsSIP.debug.enable('JsSIP:*');
+	ua = new JsSIP.UA(configuration);
+	
+	ua.on('connected', function(e){ 
+		console.log('connected');
+		
+	});
+	ua.on('registered', function(e){ 
+		console.log('registered');
+		document.getElementById("g1").style.display = 'none';
+	});
+	ua.on('newRTCSession',function(ev){
+		console.log('newRTCSession');
+        console.log(ev);
+	});
+	
+	ua.start();
+}
+</script>
+</body>
+</html>
